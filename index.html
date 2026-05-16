@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沧海传媒 · 东芳朵朵文化传媒有限公司</title>
+<meta name="description" content="广州沧海影视传媒有限公司 — 集策划、影视、服化道、舞台物料为一体的一站式服务。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #e8e6e0;
+  background: #0a0f1a;
+  overflow-x: hidden;
+  line-height: 1.7;
+  padding-top: 60px;
+  position: relative;
+}
+/* ===== 背景纹理 + 两侧装饰 ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.25;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+/* ===== 两侧装饰线（固定全屏可见） ===== */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    /* 左侧双线 */
+    linear-gradient(90deg,
+      transparent calc(50% - 650px),
+      rgba(212,175,55,0.25) calc(50% - 650px),
+      rgba(212,175,55,0.25) calc(50% - 648px),
+      transparent calc(50% - 648px),
+      transparent calc(50% - 642px),
+      rgba(212,175,55,0.12) calc(50% - 642px),
+      rgba(212,175,55,0.12) calc(50% - 640px),
+      transparent calc(50% - 640px),
+      transparent calc(50% + 640px),
+      rgba(212,175,55,0.12) calc(50% + 640px),
+      rgba(212,175,55,0.12) calc(50% + 642px),
+      transparent calc(50% + 642px),
+      transparent calc(50% + 648px),
+      rgba(212,175,55,0.25) calc(50% + 648px),
+      rgba(212,175,55,0.25) calc(50% + 650px),
+      transparent calc(50% + 650px)
+    );
+}
+/* ===== 居中光晕 ===== */
+.glow-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: 800px;
+  background: radial-gradient(ellipse, rgba(10,15,26,0) 0%, rgba(10,15,26,1) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+/* ===== 金色装饰 — Hero 角框 ===== */
+.hero-corner-tl, .hero-corner-br {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-corner-tl { top: 60px; left: 30px; }
+.hero-corner-br { bottom: 80px; right: 30px; }
+.hero-corner-tl .hl { display: block; width: 60px; height: 1px; background: rgba(212,175,55,0.3); }
+.hero-corner-tl .vl { display: block; width: 1px; height: 60px; background: rgba(212,175,55,0.3); margin-left: 0; }
+.hero-corner-tl .dot { display: block; width: 6px; height: 6px; border: 1px solid rgba(212,175,55,0.4); transform: rotate(45deg); position: absolute; top: -3px; left: -3px; }
+.hero-corner-br .hl { display: block; width: 60px; height: 1px; background: rgba(212,175,55,0.3); margin-left: auto; }
+.hero-corner-br .vl { display: block; width: 1px; height: 60px; background: rgba(212,175,55,0.3); margin-left: auto; }
+.hero-corner-br .dot { display: block; width: 6px; height: 6px; border: 1px solid rgba(212,175,55,0.4); transform: rotate(45deg); position: absolute; bottom: -3px; right: -3px; }
+
+/* ===== 案例区 菱形点阵 ===== */
+.gallery-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 30px 30px, rgba(212,175,55,0.1) 2px, transparent 2px);
+  background-size: 60px 60px;
+  background-position: 0 0;
+  pointer-events: none;
+}
+h1, h2, h3, h4, .brand-title {
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ===== SCROLL ANIMATION ===== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== TOP BANNER ===== */
+.top-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9998;
+  background: linear-gradient(90deg, #0a0f1a, #1a1f2e, #0a0f1a);
+  border-bottom: 1px solid rgba(212,175,55,0.2);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.banner-text {
+  color: #d4af37;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+.banner-text span {
+  color: #e8e6e0;
+  font-weight: 700;
+}
+.banner-qr {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid rgba(212,175,55,0.3);
+  transition: transform 0.2s;
+}
+.banner-qr:hover {
+  transform: scale(1.1);
+}
+
+/* ===== SECTION COMMON ===== */
+.section {
+  position: relative;
+  padding: 100px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #d4af37;
+  margin-bottom: 12px;
+  letter-spacing: 4px;
+}
+.section-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: rgba(232,230,224,0.6);
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 60px;
+}
+
+/* ===== ① HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(10,15,26,0.9) 0%, rgba(10,15,26,0.6) 50%, rgba(10,15,26,0.85) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  animation: heroFadeIn 1.5s ease forwards;
+}
+@keyframes heroFadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 900;
+  color: #d4af37;
+  letter-spacing: 12px;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+.hero-english {
+  font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+  color: rgba(212,175,55,0.7);
+  letter-spacing: 3px;
+  font-weight: 300;
+  margin-top: 12px;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  animation: scrollBounce 2s ease infinite;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+.hero-scroll .arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid rgba(212,175,55,0.6);
+  border-bottom: 2px solid rgba(212,175,55,0.6);
+  transform: rotate(45deg);
+}
+
+/* ===== ② ABOUT ===== */
+.about-section {
+  background: linear-gradient(180deg, #0a0f1a 0%, #111827 100%);
+}
+.about-layout {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.about-image {
+  flex: 0 0 45%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,0.15);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.about-image img {
+  width: 100%;
+  display: block;
+}
+.about-text {
+  flex: 1;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: rgba(232,230,224,0.9);
+  text-align: justify;
+  letter-spacing: 0.5px;
+}
+
+/* ===== ③ ORG CHART ===== */
+.org-section {
+  background: linear-gradient(180deg, #111827 0%, #0a0f1a 100%);
+}
+.org-image {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,0.15);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.org-image img {
+  width: 100%;
+  display: block;
+}
+
+/* ===== ④ TEAM ===== */
+.team-section {
+  background: linear-gradient(180deg, #0a0f1a 0%, #111827 100%);
+}
+.team-intro-layout {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto 50px;
+}
+.team-intro-image {
+  flex: 0 0 40%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,0.15);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.team-intro-image img {
+  width: 100%;
+  display: block;
+}
+.team-intro-text {
+  flex: 1;
+}
+.team-intro-text h3 {
+  color: #d4af37;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+}
+.team-intro-text ul {
+  list-style: none;
+  padding: 0;
+}
+.team-intro-text ul li {
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+  color: rgba(232,230,224,0.8);
+  font-size: 0.95rem;
+}
+.team-intro-text ul li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: #d4af37;
+  font-size: 0.6rem;
+  top: 10px;
+}
+
+/* Team profile cards (刘邦浩, 谢尔, 刘新江 — 3 columns) */
+.team-profiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 16px;
+}
+.team-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(212,175,55,0.1);
+  border-color: rgba(212,175,55,0.3);
+}
+.team-card .card-image {
+  width: 100%;
+  display: block;
+}
+.team-card-body {
+  padding: 20px 24px 24px;
+}
+.team-card-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #d4af37;
+  margin-bottom: 4px;
+}
+.team-card-role {
+  font-size: 0.85rem;
+  color: rgba(212,175,55,0.7);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.team-card-bio {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(232,230,224,0.75);
+}
+.team-card-bio .achievement {
+  display: block;
+  padding-left: 12px;
+  border-left: 2px solid rgba(212,175,55,0.3);
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: rgba(232,230,224,0.65);
+}
+
+/* Team members row (张钰松, 郑岳崚, 吴秉泽, 钟昂霖 — 4 in one row) */
+.team-members-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.member-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(212,175,55,0.1);
+}
+.member-card img {
+  width: 100%;
+  display: block;
+}
+.member-card-body {
+  padding: 14px;
+}
+.member-card-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #d4af37;
+  margin-bottom: 2px;
+}
+.member-card-role {
+  font-size: 0.78rem;
+  color: rgba(212,175,55,0.7);
+  letter-spacing: 1px;
+}
+.member-card-bio {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(232,230,224,0.65);
+  margin-top: 8px;
+  text-align: left;
+}
+
+/* ===== ⑤ GALLERY ===== */
+.gallery-section {
+  background: linear-gradient(180deg, #111827 0%, #0a0f1a 100%);
+}
+.tab-bar {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  padding: 0 16px;
+}
+.tab-btn {
+  padding: 10px 28px;
+  background: transparent;
+  border: 1px solid rgba(212,175,55,0.25);
+  color: rgba(232,230,224,0.6);
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 2px;
+  border-radius: 4px;
+}
+.tab-btn:hover {
+  color: #d4af37;
+  border-color: rgba(212,175,55,0.5);
+}
+.tab-btn.active {
+  background: rgba(212,175,55,0.12);
+  color: #d4af37;
+  border-color: #d4af37;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 16 / 10;
+  background: #1a1f2e;
+  transition: transform 0.3s ease;
+}
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+.gallery-item-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 14px 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.gallery-item:hover .gallery-item-caption {
+  opacity: 1;
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  cursor: pointer;
+}
+.lightbox.active {
+  display: flex;
+}
+.lightbox img {
+  max-width: 95vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  cursor: default;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ===== QR LIGHTBOX (for banner QR) ===== */
+.qr-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.qr-lightbox.active {
+  display: flex;
+}
+.qr-lightbox img {
+  max-width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  cursor: default;
+}
+
+/* ===== ⑥ FOOTER ===== */
+.footer {
+  background: #050810;
+  padding: 60px 24px 40px;
+  text-align: center;
+}
+.footer-brand {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.6rem;
+  color: #d4af37;
+  letter-spacing: 6px;
+  margin-bottom: 8px;
+}
+.footer-company {
+  font-size: 0.9rem;
+  color: rgba(232,230,224,0.5);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(212,175,55,0.3);
+  margin: 0 auto 20px;
+}
+.footer-copy {
+  font-size: 0.8rem;
+  color: rgba(232,230,224,0.3);
+  letter-spacing: 1px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .section { padding: 70px 20px; }
+  .about-layout { flex-direction: column; }
+  .about-image { flex: none; width: 100%; max-width: 600px; }
+  .team-intro-layout { flex-direction: column; }
+  .team-intro-image { flex: none; width: 100%; max-width: 500px; }
+  .team-members-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .team-profiles { grid-template-columns: 1fr; }
+  .team-members-row { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .section-title { font-size: 1.8rem; }
+  .tab-btn { padding: 8px 18px; font-size: 0.8rem; }
+  .about-text { font-size: 0.95rem; }
+  .top-banner { padding: 8px 12px; gap: 10px; }
+  .banner-text { font-size: 0.85rem; }
+  .banner-qr { width: 30px; height: 30px; }
+  body { padding-top: 50px; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .team-members-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .section { padding: 50px 16px; }
+  .section-title { font-size: 1.5rem; }
+  .hero-title { letter-spacing: 6px; }
+  .tab-btn { padding: 6px 14px; font-size: 0.75rem; }
+  .about-text { font-size: 0.88rem; line-height: 1.8; }
+  .member-card-bio { font-size: 0.7rem; line-height: 1.4; }
+  .hero-corner-tl, .hero-corner-br { display: none; }
+  .banner-text { font-size: 0.72rem; }
+  .banner-qr { width: 26px; height: 26px; }
+  .gallery-item-caption { font-size: 0.7rem; padding: 30px 10px 10px; }
+  .org-image { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 居中光晕 ===== -->
+<div class="glow-center"></div>
+
+<!-- ===== TOP BANNER ===== -->
+<div class="top-banner" id="topBanner">
+  <span class="banner-text">详情请咨询：<span>Leo刘邦浩</span></span>
+  <img class="banner-qr" src="images/wechat-qr.jpg" alt="微信二维码" id="qrThumb">
+</div>
+
+<!-- ===== QR LIGHTBOX ===== -->
+<div class="qr-lightbox" id="qrLightbox">
+  <img src="images/wechat-qr.jpg" alt="微信二维码">
+</div>
+
+<!-- ===== ① HERO ===== -->
+<section class="hero" id="hero">
+  <img class="hero-bg" src="images/hero-bg.jpg" alt="沧海传媒" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-title">沧海传媒</div>
+    <div class="hero-subtitle">东芳朵朵文化传媒有限公司</div>
+    <div class="hero-english">DONGFANG DUODUO CULTURE MEDIA CO., LTD</div>
+  </div>
+  <div class="hero-scroll">
+    <span>向下滚动</span>
+    <div class="arrow"></div>
+  </div>
+  <!-- 金色角框 -->
+  <div class="hero-corner-tl"><span class="vl"></span><span class="hl"></span><span class="dot"></span></div>
+  <div class="hero-corner-br"><span class="hl"></span><span class="vl"></span><span class="dot"></span></div>
+</section>
+
+<!-- ===== ② ABOUT ===== -->
+<section class="section about-section scroll-reveal" id="about">
+  <h2 class="section-title">公司简介与资质</h2>
+  <div class="section-divider"></div>
+  <div class="about-layout">
+    <div class="about-image">
+      <img src="images/about-bg.jpg" alt="公司简介" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>广州沧海影视传媒有限公司以策划服务为龙头，形成集策划、影视、服化道、舞台物料为一体的一站式服务。我们拥有专业的团队，对把控活动策划及影视制作有着独特专业的技巧。我司一直以广东市场为轴心，辐射全国市场。目前业务已经覆盖各行各业，并在业界拥有一定美誉度。我们以诚信运营为基础，以客户满意为目标，以完善执行谋发展，不断探索、创新、超越，务求成为深受客户信赖和赞许的战略合作伙伴，致力于成为广东省首屈一指的文化影视传播公司。我们愿意与您一起创造文艺界的美好明天！</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ③ ORG CHART ===== -->
+<section class="section org-section scroll-reveal" id="org">
+  <h2 class="section-title">组织架构</h2>
+  <div class="section-divider"></div>
+  <div class="org-image">
+    <img src="images/org-chart.jpg" alt="沧海传媒组织架构" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== ④ TEAM ===== -->
+<section class="section team-section scroll-reveal" id="team">
+  <h2 class="section-title">团队介绍</h2>
+  <div class="section-divider"></div>
+
+  <div class="team-intro-layout scroll-reveal">
+    <div class="team-intro-image">
+      <img src="images/team-intro-bg.jpg" alt="团队介绍" loading="lazy">
+    </div>
+    <div class="team-intro-text">
+      <h3>核心理念</h3>
+      <ul>
+        <li>持岗上证，丰富工作经验和高品位艺术审美</li>
+        <li>高效沟通，沟通快速及时，服务周到全面</li>
+        <li>行业顶尖，经验丰富，技术专业，服务周到</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Top 3: Full-page profile members -->
+  <div class="team-profiles" id="teamProfiles">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Bottom 4: Cropped portrait members in one row -->
+  <div class="team-members-row" id="teamMembersRow">
+    <!-- Rendered by JS -->
+  </div>
+</section>
+
+<!-- ===== ⑤ GALLERY ===== -->
+<section class="section gallery-section scroll-reveal" id="works">
+  <h2 class="section-title">作品案例</h2>
+  <div class="section-divider"></div>
+
+  <div class="tab-bar" id="tabBar">
+    <button class="tab-btn active" data-tab="plan">策划案</button>
+    <button class="tab-btn" data-tab="activity">活动类</button>
+    <button class="tab-btn" data-tab="estate">地产类</button>
+    <button class="tab-btn" data-tab="beauty">美业类</button>
+    <button class="tab-btn" data-tab="promo">宣传片</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Rendered by JS -->
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- ===== ⑥ FOOTER ===== -->
+<footer class="footer" id="footer">
+  <div class="footer-brand">沧海传媒</div>
+  <div class="footer-company">东芳朵朵文化传媒有限公司</div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">©2026 沧海传媒 All Rights Reserved</div>
+</footer>
+
+<script>
+// ===== TEAM MEMBERS =====
+// Top 3: full-page profile (刘邦浩, 谢尔, 刘新江)
+const profileMembers = [
+  {
+    name: '刘邦浩',
+    role: '制片人、策划',
+    photo: 'images/team_p6.jpg',
+    bio: '90后，从事传媒行业十年以上。操盘大型活动200余场，具备领导统筹现场能力；参与制片的商业活动近千场，其中宣传片、访谈片、商业片近百部。合作对象均为政府单位、大学、汽车、地产、医疗美容等。',
+    achievements: [
+      '中华人民共和国第二届职业技能大赛开闭幕式总统筹、执行导演',
+      '中华人民共和国第三届职业技能大赛开闭幕式制片人、总统筹',
+      '广东省第二届职业技能大赛开闭幕式联合制片人、执行导演',
+      '2025年越秀地产全民运动会总导演'
+    ]
+  },
+  {
+    name: '谢尔',
+    role: '视觉设计师',
+    photo: 'images/team_p7.jpg',
+    bio: '专业从事美术行业八年，国家一级化妆造型师、开心麻花剧组(华南地区)服化总指导。涉及商业摄影、广告制作、形象设计、舞台演出、晚会宴会、模特、服装服饰、化妆产品形象代言、公众人物形象顾问、明星化妆师等广泛领域。',
+    achievements: [
+      '中华人民共和国第二届职业技能大赛开闭幕式美术指导',
+      '中华人民共和国第三届职业技能大赛开闭幕式美术指导',
+      '2020-2022虞美人国际西南大区《年度环球女神大赛》',
+      '2025越秀地产全民运动会美术指导'
+    ]
+  },
+  {
+    name: '刘新江',
+    role: '艺术指导',
+    photo: 'images/team_p8.jpg',
+    bio: '国家一级编导，深耕舞蹈行业三十余年，资深艺术指导。先后荣获星光校园、和谐春晚全国最佳指导教师等国家级荣誉，获评广州市技工教育高质量发展优秀个人。深耕艺术美育与职业教育领域，兼具舞台创作与教学育人双重实力。',
+    achievements: [
+      '第四届和谐春晚·最佳指导教师',
+      '第六届「星光校园」全国(中小)学生春节联欢晚会最佳指导教师',
+      '2021年广州市技工教育高质量发展工作优秀个人'
+    ]
+  }
+];
+
+// Bottom 4: cropped portrait members (张钰松, 郑岳崚, 吴秉泽, 钟昂霖)
+const memberList = [
+  {
+    name: '张钰松',
+    role: '营销总监',
+    photo: 'images/zhangyusong.jpg',
+    bio: '深耕营销领域5年，历任营销总监，擅长品牌策划、渠道拓客与全域流量运营。兼具战略布局与落地执行能力，精于团队管理、市场研判及营销全链路统筹。思维敏锐务实，业绩突出，能带团队破局增长。'
+  },
+  {
+    name: '郑岳崚',
+    role: '营销经理',
+    photo: 'images/zhengyueling.jpg',
+    bio: '深耕营销领域5年，擅长市场推广、活动策划与客户维护。精通线上线下渠道落地执行，善于数据分析、拓新维稳。执行力强、沟通高效，能独立完成营销任务，助力业绩稳步提升。'
+  },
+  {
+    name: '吴秉泽',
+    role: '摄影师、修图师',
+    photo: 'images/wubingze.jpg',
+    bio: '专业拍摄七年，拍摄类型有地产建筑、室内装饰、人物形象照、婚礼、旅拍写真、大型会议、医美活动等。'
+  },
+  {
+    name: '钟昂霖',
+    role: '摄像/摄影师、修图师',
+    photo: 'images/zhonganglin.jpg',
+    bio: '专业拍摄六年，拍摄类型有写真、婚礼、人物形象照、会议活动、建筑室内、拓展活动及幼儿园毕业照等。'
+  }
+];
+
+// ===== CASE DATA =====
+const caseData = {
+  // ① 策划案 (PDF p11-34)
+  plan: [
+    { title: '全国行业职业技能竞赛·第二届全国工业设计职业技能大赛决赛开幕式', img: 'images/case-plan-p11.jpg' },
+    { title: '2022年全国行业职业技能竞赛·第二届全国工业设计职业技能大赛决赛闭幕式', img: 'images/case-plan-p12.jpg' },
+    { title: '朵博士合作伙伴澳门大会', img: 'images/case-plan-p13.jpg' },
+    { title: '英广集团年会', img: 'images/case-plan-p14.jpg' },
+    { title: '东非职业教育高级管理人员卓越领导力活动', img: 'images/case-plan-p15.jpg' },
+    { title: '暨紫禁书院·广州分院揭幕仪式', img: 'images/case-plan-p16.jpg' },
+    { title: '2026年全国「老字号嘉年华」暨大湾区年味消费季', img: 'images/case-plan-p17.jpg' },
+    { title: '2025年度党支部风采暨教职工元旦文艺展示', img: 'images/case-plan-p18.jpg' },
+    { title: '2025年广东「金话筒」讲解大赛总决赛', img: 'images/case-plan-p19.jpg' },
+    { title: '2025年越秀社区全民运动会', img: 'images/case-plan-p20.jpg' },
+    { title: '达意隆26周年庆典暨超级工厂启用仪式', img: 'images/case-plan-p21.jpg' },
+    { title: '广州开放大学2026年校园开放日暨校园文化节开幕式', img: 'images/case-plan-p22.jpg' },
+    { title: '广州市百千万工程', img: 'images/case-plan-p23.jpg' },
+    { title: '京东电器全国英雄联盟挑战赛', img: 'images/case-plan-p24.jpg' },
+    { title: '鹏瑞·皓玥湾豪车试驾活动', img: 'images/case-plan-p25.jpg' },
+    { title: '华江集团誓师大会', img: 'images/case-plan-p26.jpg' },
+    { title: '中国好声音广东省城市半决赛', img: 'images/case-plan-p27.jpg' },
+    { title: '新时代 新征程 新工贸晚会', img: 'images/case-plan-p28.jpg' },
+    { title: '粤韵颂党恩 奋进新征程', img: 'images/case-plan-p29.jpg' },
+    { title: '方程豹车展', img: 'images/case-plan-p30.jpg' },
+    { title: '东风奕派车展', img: 'images/case-plan-p31.jpg' },
+    { title: '您好小洲艺术季', img: 'images/case-plan-p32.jpg' },
+    { title: '增城区人力资源服务助力制造业高质量发展大会', img: 'images/case-plan-p33.jpg' },
+    { title: '长隆考拉20周年欢聚季', img: 'images/case-plan-p34.jpg' }
+  ],
+  // ② 活动类 (PDF p36-45)
+  activity: [
+    { title: '广东省生物医药创新技术学会成立五周年会员大会', img: 'images/case-activity-p36.jpg' },
+    { title: '第三届粤港澳大湾区卫生健康合作大会·结核学术专题论坛', img: 'images/case-activity-p37.jpg' },
+    { title: '中国毒理学会药物毒理与安全性评价学术大会暨粤港澳大湾区生物医药产业第二届高峰论坛', img: 'images/case-activity-p38.jpg' },
+    { title: '蒙牛集团低温事业部合作伙伴年会华南分会', img: 'images/case-activity-p39.jpg' },
+    { title: '胡润中国元宇宙高峰论坛', img: 'images/case-activity-p40.jpg' },
+    { title: '第二届「岭南杯」优秀会员合诵大赛', img: 'images/case-activity-p41.jpg' },
+    { title: '非遗醒狮 粤起国潮', img: 'images/case-activity-p42.jpg' },
+    { title: '真实与知觉', img: 'images/case-activity-p43.jpg' },
+    { title: '青春绽放「舞」比快乐', img: 'images/case-activity-p44.jpg' },
+    { title: '高奢盛宴 艺鉴瑰宝', img: 'images/case-activity-p45.jpg' }
+  ],
+  // ③ 地产类 (PDF p47-57)
+  estate: [
+    { title: '地产项目案例', img: 'images/case-estate-p47.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p48.jpg' },
+    { title: '在珠江 对话世界塔尖', img: 'images/case-estate-p49.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p50.jpg' },
+    { title: '仰止瑧山 世界于此交响', img: 'images/case-estate-p51.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p52.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p53.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p54.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p55.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p56.jpg' },
+    { title: '地产项目案例', img: 'images/case-estate-p57.jpg' }
+  ],
+  // ④ 美业类 (PDF p59-67)
+  beauty: [
+    { title: '美业品牌案例', img: 'images/case-beauty-p59.jpg' },
+    { title: '美业品牌案例', img: 'images/case-beauty-p60.jpg' },
+    { title: '美业品牌案例', img: 'images/case-beauty-p61.jpg' },
+    { title: '美业品牌案例', img: 'images/case-beauty-p62.jpg' },
+    { title: '虞美人国际集团·西南大区 时尚礼帽之夜', img: 'images/case-beauty-p63.jpg' },
+    { title: '虞美人国际集团·西南大区 环球女神大赛', img: 'images/case-beauty-p64.jpg' },
+    { title: '虞美人国际集团·西南大区 梦想秀·城市之星', img: 'images/case-beauty-p65.jpg' },
+    { title: '虞美人国际集团·西南大区 她时代·新女性 明星会', img: 'images/case-beauty-p66.jpg' },
+    { title: '虞美人国际集团·西南大区 环球女神·公益课', img: 'images/case-beauty-p67.jpg' }
+  ],
+  // ⑤ 宣传片 (PDF p69-84)
+  promo: [
+    { title: '筑梦前行 不期而虞', img: 'images/case-promo-p69.jpg' },
+    { title: '中华人民共和国第二届职业技能大赛主题宣传', img: 'images/case-promo-p70.jpg' },
+    { title: '中国科学院院士、发展中国家科学院院士侯凡凡访谈专题片', img: 'images/case-promo-p71.jpg' },
+    { title: '广州市胸科医院专题片', img: 'images/case-promo-p72.jpg' },
+    { title: '汇金中心贪玩CEO访谈', img: 'images/case-promo-p73.jpg' },
+    { title: '世贸天鹅湾访谈片', img: 'images/case-promo-p74.jpg' },
+    { title: '金地仰云航拍宣传片', img: 'images/case-promo-p75.jpg' },
+    { title: '中国铁建访谈', img: 'images/case-promo-p76.jpg' },
+    { title: '汇金中心商业片', img: 'images/case-promo-p77.jpg' },
+    { title: '广州市技师学院宣传片', img: 'images/case-promo-p78.jpg' },
+    { title: '广州市工贸技师学院宣传片', img: 'images/case-promo-p79.jpg' },
+    { title: '广州商学院宣传片', img: 'images/case-promo-p80.jpg' },
+    { title: '广信宣传片', img: 'images/case-promo-p81.jpg' },
+    { title: '中国海油「梦想启航」宣传片', img: 'images/case-promo-p82.jpg' },
+    { title: '锦绣春秋宣传片', img: 'images/case-promo-p83.jpg' },
+    { title: '美涛风尚专题片', img: 'images/case-promo-p84.jpg' }
+  ]
+};
+
+// ===== RENDER TEAM =====
+function renderTeam() {
+  // Top 3 profiles
+  const profilesEl = document.getElementById('teamProfiles');
+  profilesEl.innerHTML = profileMembers.map(m => {
+    const achievements = m.achievements.map(a => `<span class="achievement">• ${a}</span>`).join('');
+    return `
+      <div class="team-card scroll-reveal">
+        <img class="card-image" src="${m.photo}" alt="${m.name}" loading="lazy">
+        <div class="team-card-body">
+          <div class="team-card-name">${m.name}</div>
+          <div class="team-card-role">${m.role}</div>
+          <div class="team-card-bio">${m.bio}${achievements}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Bottom 4 members
+  const membersEl = document.getElementById('teamMembersRow');
+  membersEl.innerHTML = memberList.map(m => `
+    <div class="member-card scroll-reveal">
+      <img src="${m.photo}" alt="${m.name}" loading="lazy">
+      <div class="member-card-body">
+        <div class="member-card-name">${m.name}</div>
+        <div class="member-card-role">${m.role}</div>
+        <div class="member-card-bio">${m.bio}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== RENDER GALLERY =====
+function renderGallery(tab) {
+  const grid = document.getElementById('galleryGrid');
+  const items = caseData[tab] || [];
+  grid.innerHTML = items.map((item, idx) => {
+    return `
+      <div class="gallery-item scroll-reveal" data-src="${item.img}" style="transition-delay: ${(idx % 6) * 0.05}s">
+        <img src="${item.img}" alt="${item.title}" loading="lazy">
+        <div class="gallery-item-caption">${item.title}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== TAB SWITCH =====
+let currentTab = 'plan';
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+  });
+  renderGallery(tab);
+  setTimeout(observeScrollReveal, 100);
+}
+
+document.getElementById('tabBar').addEventListener('click', function(e) {
+  const btn = e.target.closest('.tab-btn');
+  if (btn && btn.dataset.tab !== currentTab) {
+    switchTab(btn.dataset.tab);
+  }
+});
+
+// ===== LIGHTBOX (gallery) =====
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.getElementById('galleryGrid').addEventListener('click', function(e) {
+  const item = e.target.closest('.gallery-item');
+  if (item) {
+    const src = item.dataset.src;
+    if (src) {
+      lightboxImg.src = src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+lightboxClose.addEventListener('click', function(e) {
+  e.stopPropagation();
+  closeLightbox();
+});
+
+lightbox.addEventListener('click', function(e) {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    closeLightbox();
+  }
+});
+
+// ===== QR CODE LIGHTBOX =====
+const qrLightbox = document.getElementById('qrLightbox');
+const qrThumb = document.getElementById('qrThumb');
+
+qrThumb.addEventListener('click', function() {
+  qrLightbox.classList.add('active');
+});
+
+qrLightbox.addEventListener('click', function() {
+  qrLightbox.classList.remove('active');
+});
+
+// ===== SCROLL REVEAL =====
+let scrollObserver = null;
+
+function observeScrollReveal() {
+  if (scrollObserver) {
+    scrollObserver.disconnect();
+  }
+  scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.scroll-reveal:not(.revealed)').forEach(el => {
+    scrollObserver.observe(el);
+  });
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+  renderTeam();
+  renderGallery('plan');
+  observeScrollReveal();
+});
+</script>
+</body>
+</html>
